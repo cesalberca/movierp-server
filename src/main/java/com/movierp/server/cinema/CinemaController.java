@@ -7,12 +7,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class CinemaController {
+    @Autowired
+    public CinemaController(CinemaDao cinemaDao) {
+        this.cinemaDao = cinemaDao;
+    }
+
     @RequestMapping("/create")
     @ResponseBody
-    public String create(String name) {
+    public String create(String name, String cif, String address, String postalCode) {
         Cinema cinema;
         try {
-            cinema = new Cinema(name);
+            cinema = new Cinema(name, cif, address, postalCode);
             cinemaDao.save(cinema);
         }
         catch (Exception ex) {
@@ -21,6 +26,5 @@ public class CinemaController {
         return "Cinema succesfully created! (id = " + cinema.getId() + ")";
     }
 
-    @Autowired
-    private CinemaDao cinemaDao;
+    private final CinemaDao cinemaDao;
 }

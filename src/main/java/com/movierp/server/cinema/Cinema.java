@@ -17,14 +17,21 @@ public class Cinema {
     @NotNull
     private String name;
 
+    private String cif;
+    private String address;
+    private String postalCode;
+
     public Cinema() {}
 
     public Cinema(long id) {
         this.id = id;
     }
 
-    public Cinema(String name) {
+    public Cinema(String name, String cif, String address, String postalCode) {
         this.name = name;
+        this.cif = cif;
+        this.address = address;
+        this.postalCode = postalCode;
     }
 
     public long getId() {
@@ -41,5 +48,29 @@ public class Cinema {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCif() {
+        return cif;
+    }
+
+    public void setCif(String cif) {
+        this.cif = cif;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 }
