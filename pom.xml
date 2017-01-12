@@ -4,16 +4,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Project's properties -->
     <groupId>com.movierp.server</groupId>
     <artifactId>Movierp-server</artifactId>
     <version>0.1.0</version>
 
+    <!-- Wrapper of the project -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.4.2.RELEASE</version>
     </parent>
 
+    <!-- Dependencies and libraries of the project -->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -31,10 +34,12 @@
         </dependency>
     </dependencies>
 
+    <!-- Java version -->
     <properties>
         <java.version>1.8</java.version>
     </properties>
 
+    <!-- Build configuration. We are using spring boot -->
     <build>
         <plugins>
             <plugin>
@@ -44,12 +49,14 @@
         </plugins>
     </build>
 
+    <!-- Remote repositories where maven gets latest releases -->
     <repositories>
         <repository>
             <id>spring-releases</id>
             <url>https://repo.spring.io/libs-release</url>
         </repository>
     </repositories>
+
     <pluginRepositories>
         <pluginRepository>
             <id>spring-releases</id>
