@@ -9,6 +9,11 @@
     <artifactId>Movierp-server</artifactId>
     <version>0.1.0</version>
 
+    <!-- Java version -->
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
     <!-- Wrapper of the project -->
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -33,11 +38,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <!-- Java version -->
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
 
     <!-- Build configuration. We are using spring boot -->
     <build>
