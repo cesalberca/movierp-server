@@ -7,5 +7,25 @@ It's made using the following technologies:
 
 * Spring boot
 * Spring Rest
-* Hibernate
+* Spring JPA
 * Maven
+
+# Architecture
+
+```
+-com.movierp.server
+    - user
+         UserService
+         UserController
+         UserDAO
+         User
+    - movie
+         Movie
+         MovieController
+         MovieService
+         MovieDAO
+```
+
+http://stackoverflow.com/questions/19284417/how-to-define-package-structure-for-a-spring-rest-mvc-application
+
+https://www.youtube.com/watch?v=tEm0USdF-70
