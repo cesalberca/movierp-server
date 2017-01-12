@@ -1,4 +1,4 @@
-package com.movierp.server.user;
+package com.movierp.server.cinema;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +8,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "USUARIOS_TEST")
-public class User {
+@Table(name = "CINES")
+public class Cinema {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -17,13 +17,13 @@ public class User {
     @NotNull
     private String name;
 
-    public User() {}
+    public Cinema() {}
 
-    public User(long id) {
+    public Cinema(long id) {
         this.id = id;
     }
 
-    public User(String name) {
+    public Cinema(String name) {
         this.name = name;
     }
 

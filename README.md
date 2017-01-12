@@ -14,7 +14,7 @@ It's made using the following technologies:
 
 ```
 -com.movierp.server
-    - user
+    - cinema
          UserService
          UserController
          UserDAO
