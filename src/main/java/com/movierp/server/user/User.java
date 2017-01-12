@@ -1,4 +1,4 @@
-package com.movierp.server;
+package com.movierp.server.user;
 
 public class User {
     private final String name;
