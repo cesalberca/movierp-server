@@ -1,48 +1,47 @@
 package com.movierp.server.cinema;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
+@RequestMapping(value = "/cinemas")
 public class CinemaController {
+    private final CinemaDao cinemaDao;
+
     @Autowired
     public CinemaController(CinemaDao cinemaDao) {
         this.cinemaDao = cinemaDao;
     }
 
-    @RequestMapping("/create")
+    @RequestMapping(method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public String create(String name, String cif, String address, String postalCode) {
-        Cinema cinema;
-        try {
-            cinema = new Cinema(name, cif, address, postalCode);
-            cinemaDao.save(cinema);
-        } catch (Exception ex) {
-            return "Error creating the cinema: " + ex.toString();
-        }
-        return "Cinema succesfully created! (id = " + cinema.getId() + ")";
+    public ResponseEntity create(@RequestBody Cinema cinema) {
+        cinemaDao.save(cinema);
+        return new ResponseEntity(cinema, HttpStatus.CREATED);
     }
 
-    @RequestMapping("/cinemas")
+    @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public Iterable getCinemas() {
-        return cinemaDao.findAll();
+    public List<Cinema> getCinemas() {
+        return (List<Cinema>) cinemaDao.findAll();
     }
 
-    @RequestMapping("/cinemas/delete")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public String deleteCinema(long id) {
-        try {
-            Cinema cinema = new Cinema(id);
-            cinemaDao.delete(cinema);
-        }
-        catch (Exception ex) {
-            return "Error deleting the user:" + ex.toString();
-        }
-        return "Cinema succesfully deleted!";
+    public Cinema getCinema(@PathVariable("id") long id) {
+        return cinemaDao.findOne(id);
     }
 
-    private final CinemaDao cinemaDao;
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable("id") long id) {
+        cinemaDao.delete(id);
+    }
 }
