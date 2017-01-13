@@ -21,24 +21,24 @@ public class CinemaController {
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Cinema> create(Cinema cinema) {
-        cinemaService.save(cinema);
+        this.cinemaService.save(cinema);
         HttpHeaders responseHeaders = new HttpHeaders();
         return new ResponseEntity<>(cinema, responseHeaders, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Cinema> findAll() {
-        return (List<Cinema>) cinemaService.findAll();
+        return (List<Cinema>) this.cinemaService.findAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Cinema findOne(@PathVariable("id") long id) {
-        return cinemaService.findOne(id);
+        return this.cinemaService.findOne(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Cinema> update(@PathVariable("id") Cinema cinema) {
-        cinemaService.save(cinema);
+        this.cinemaService.save(cinema);
         HttpHeaders responseHeaders = new HttpHeaders();
         return new ResponseEntity<>(cinema, responseHeaders, HttpStatus.OK);
     }
@@ -46,6 +46,6 @@ public class CinemaController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable("id") long id) {
-        cinemaService.delete(id);
+        this.cinemaService.delete(id);
     }
 }
