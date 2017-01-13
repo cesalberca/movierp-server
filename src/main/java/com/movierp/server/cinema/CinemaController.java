@@ -1,6 +1,7 @@
 package com.movierp.server.cinema;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +20,10 @@ public class CinemaController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity create(@RequestBody Cinema cinema) {
+    public ResponseEntity<Cinema> create(@RequestBody Cinema cinema) {
         cinemaDao.save(cinema);
-        return new ResponseEntity(cinema, HttpStatus.CREATED);
+        HttpHeaders responseHeaders = new HttpHeaders();
+        return new ResponseEntity<>(cinema, responseHeaders, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET)
