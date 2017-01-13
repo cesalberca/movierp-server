@@ -9,7 +9,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
 import java.util.List;
 
 @Transactional
-@RepositoryRestResource(path = "cinemas")
+@RepositoryRestResource(collectionResourceRel = "cinemas", path = "cinemas")
 public interface CinemaService extends CrudRepository<Cinema, Long> {
     @RestResource(path = "findByName")
     List<Cinema> findByName(@Param("name") String name);
