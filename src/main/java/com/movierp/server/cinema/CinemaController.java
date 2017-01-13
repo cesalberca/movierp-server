@@ -20,7 +20,7 @@ public class CinemaController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Cinema> create(@RequestBody Cinema cinema) {
+    public ResponseEntity<Cinema> create(Cinema cinema) {
         cinemaService.save(cinema);
         HttpHeaders responseHeaders = new HttpHeaders();
         return new ResponseEntity<>(cinema, responseHeaders, HttpStatus.OK);
