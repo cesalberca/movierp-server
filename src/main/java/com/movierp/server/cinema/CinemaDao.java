@@ -8,10 +8,11 @@ import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import org.springframework.data.repository.query.Param;
 
 @Transactional
-@RepositoryRestResource(path = "cinemas")
+@RepositoryRestResource(path = "cinemas", collectionResourceRel = "cinemas")
 public interface CinemaDao extends CrudRepository<Cinema, Long> {
-    @RestResource(path = "names", rel ="name")
-    List<Cinema> findByName(String name);
+    @RestResource(path="searchByName", rel="searchByName")
+    List<Cinema> findByName(@Param("name") String name);
 }
