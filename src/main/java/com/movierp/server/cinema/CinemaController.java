@@ -11,34 +11,34 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/cinemas")
 public class CinemaController {
-    private final CinemaDao cinemaDao;
+    private final CinemaService cinemaService;
 
     @Autowired
-    public CinemaController(CinemaDao cinemaDao) {
-        this.cinemaDao = cinemaDao;
+    public CinemaController(CinemaService cinemaService) {
+        this.cinemaService = cinemaService;
     }
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Cinema> create(@RequestBody Cinema cinema) {
-        cinemaDao.save(cinema);
+        cinemaService.save(cinema);
         HttpHeaders responseHeaders = new HttpHeaders();
         return new ResponseEntity<>(cinema, responseHeaders, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Cinema> getCinemas() {
-        return (List<Cinema>) cinemaDao.findAll();
+        return (List<Cinema>) cinemaService.findAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Cinema getCinema(@PathVariable("id") long id) {
-        return cinemaDao.findOne(id);
+        return cinemaService.findOne(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable("id") long id) {
-        cinemaDao.delete(id);
+        cinemaService.delete(id);
     }
 }
