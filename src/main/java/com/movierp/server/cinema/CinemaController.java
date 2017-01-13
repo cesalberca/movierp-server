@@ -27,13 +27,20 @@ public class CinemaController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Cinema> getCinemas() {
+    public List<Cinema> findAll() {
         return (List<Cinema>) cinemaService.findAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Cinema getCinema(@PathVariable("id") long id) {
+    public Cinema findOne(@PathVariable("id") long id) {
         return cinemaService.findOne(id);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Cinema> update(@PathVariable("id") Cinema cinema) {
+        cinemaService.save(cinema);
+        HttpHeaders responseHeaders = new HttpHeaders();
+        return new ResponseEntity<>(cinema, responseHeaders, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
