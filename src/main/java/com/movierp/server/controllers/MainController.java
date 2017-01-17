@@ -1,4 +1,4 @@
-package com.movierp.server;
+package com.movierp.server.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
