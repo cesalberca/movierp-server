@@ -6,13 +6,24 @@ import javax.persistence.*;
  * Created by Cesar
  */
 @Entity
-@Table(name = "CINES", schema = "movierp", catalog = "")
+@Table(name = "CINES", schema = "movierp")
 public class CinesEntity {
     private int idcine;
     private String nombre;
     private String cif;
     private String direccion;
     private Integer cPostal;
+
+    CinesEntity() {
+
+    }
+
+    public CinesEntity(String nombre, String cif, String direccion, Integer cPostal) {
+        this.nombre = nombre;
+        this.cif = cif;
+        this.direccion = direccion;
+        this.cPostal = cPostal;
+    }
 
     @Id
     @Column(name = "IDCINE")
