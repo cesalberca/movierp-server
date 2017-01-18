@@ -8,11 +8,23 @@ import javax.persistence.*;
 @Entity
 @Table(name = "CINES", schema = "movierp")
 public class CinesEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "IDCINE")
     private int idcine;
-    private String nombre;
-    private String cif;
-    private String direccion;
-    private Integer cPostal;
+
+    @Column(name = "NOMBRE")
+    public String nombre;
+
+    @Column(name = "CIF")
+    public String cif;
+
+    @Column(name = "DIRECCION")
+    public String direccion;
+
+    @Column(name = "C_POSTAL")
+    public Integer cPostal;
 
     CinesEntity() {
 
@@ -25,8 +37,8 @@ public class CinesEntity {
         this.cPostal = cPostal;
     }
 
-    @Id
-    @Column(name = "IDCINE")
+    //@Id
+    //@Column(name = "IDCINE")
     public int getIdcine() {
         return idcine;
     }
@@ -35,8 +47,8 @@ public class CinesEntity {
         this.idcine = idcine;
     }
 
-    @Basic
-    @Column(name = "NOMBRE")
+    //@Basic
+    //@Column(name = "NOMBRE")
     public String getNombre() {
         return nombre;
     }
@@ -45,8 +57,8 @@ public class CinesEntity {
         this.nombre = nombre;
     }
 
-    @Basic
-    @Column(name = "CIF")
+    //@Basic
+    //@Column(name = "CIF")
     public String getCif() {
         return cif;
     }
@@ -55,8 +67,8 @@ public class CinesEntity {
         this.cif = cif;
     }
 
-    @Basic
-    @Column(name = "DIRECCION")
+    //@Basic
+    //@Column(name = "DIRECCION")
     public String getDireccion() {
         return direccion;
     }
@@ -65,8 +77,8 @@ public class CinesEntity {
         this.direccion = direccion;
     }
 
-    @Basic
-    @Column(name = "C_POSTAL")
+    //@Basic
+    //@Column(name = "C_POSTAL")
     public Integer getcPostal() {
         return cPostal;
     }
