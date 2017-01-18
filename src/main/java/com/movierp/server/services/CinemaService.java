@@ -14,7 +14,7 @@ import java.util.List;
 @Transactional
 @Repository
 @RepositoryRestResource(collectionResourceRel = "cinemas", path = "cinemas")
-public interface CinemaService extends CrudRepository<CinesEntity, Long> {
+public interface CinemaService extends CrudRepository<CinesEntity, Integer> {
     @RestResource(path = "findByNombre")
     List<CinesEntity> findByNombre(@Param("nombre") String name);
 }
