@@ -1,30 +1,32 @@
 package com.movierp.server.entities;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Created by Cesar
  */
 @Entity
-@Table(name = "PELICULAS", schema = "movierp", catalog = "")
+@Table(name = "peliculas", schema = "movierp", catalog = "")
 public class PeliculasEntity {
-    private int idpelicula;
+    private long idPelicula;
     private String nombre;
     private String sinopsis;
     private Integer duracion;
+    private Collection<SesionesEntity> sesionesByIdPelicula;
 
     @Id
-    @Column(name = "IDPELICULA")
-    public int getIdpelicula() {
-        return idpelicula;
+    @Column(name = "id_pelicula", nullable = false)
+    public long getIdPelicula() {
+        return idPelicula;
     }
 
-    public void setIdpelicula(int idpelicula) {
-        this.idpelicula = idpelicula;
+    public void setIdPelicula(long idPelicula) {
+        this.idPelicula = idPelicula;
     }
 
     @Basic
-    @Column(name = "NOMBRE")
+    @Column(name = "nombre", nullable = true, length = 50)
     public String getNombre() {
         return nombre;
     }
@@ -34,7 +36,7 @@ public class PeliculasEntity {
     }
 
     @Basic
-    @Column(name = "SINOPSIS")
+    @Column(name = "sinopsis", nullable = true, length = 500)
     public String getSinopsis() {
         return sinopsis;
     }
@@ -44,7 +46,7 @@ public class PeliculasEntity {
     }
 
     @Basic
-    @Column(name = "DURACION")
+    @Column(name = "duracion", nullable = true)
     public Integer getDuracion() {
         return duracion;
     }
@@ -60,7 +62,7 @@ public class PeliculasEntity {
 
         PeliculasEntity that = (PeliculasEntity) o;
 
-        if (idpelicula != that.idpelicula) return false;
+        if (idPelicula != that.idPelicula) return false;
         if (nombre != null ? !nombre.equals(that.nombre) : that.nombre != null) return false;
         if (sinopsis != null ? !sinopsis.equals(that.sinopsis) : that.sinopsis != null) return false;
         if (duracion != null ? !duracion.equals(that.duracion) : that.duracion != null) return false;
@@ -70,10 +72,19 @@ public class PeliculasEntity {
 
     @Override
     public int hashCode() {
-        int result = idpelicula;
+        int result = (int) (idPelicula ^ (idPelicula >>> 32));
         result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
         result = 31 * result + (sinopsis != null ? sinopsis.hashCode() : 0);
         result = 31 * result + (duracion != null ? duracion.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "peliculasByIdPelicula")
+    public Collection<SesionesEntity> getSesionesByIdPelicula() {
+        return sesionesByIdPelicula;
+    }
+
+    public void setSesionesByIdPelicula(Collection<SesionesEntity> sesionesByIdPelicula) {
+        this.sesionesByIdPelicula = sesionesByIdPelicula;
     }
 }

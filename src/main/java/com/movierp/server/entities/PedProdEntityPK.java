@@ -8,27 +8,27 @@ import java.io.Serializable;
  * Created by Cesar
  */
 public class PedProdEntityPK implements Serializable {
-    private int idpedido;
-    private int idproducto;
+    private long idPedido;
+    private long idProducto;
 
-    @Column(name = "IDPEDIDO")
+    @Column(name = "id_pedido", nullable = false)
     @Id
-    public int getIdpedido() {
-        return idpedido;
+    public long getIdPedido() {
+        return idPedido;
     }
 
-    public void setIdpedido(int idpedido) {
-        this.idpedido = idpedido;
+    public void setIdPedido(long idPedido) {
+        this.idPedido = idPedido;
     }
 
-    @Column(name = "IDPRODUCTO")
+    @Column(name = "id_producto", nullable = false)
     @Id
-    public int getIdproducto() {
-        return idproducto;
+    public long getIdProducto() {
+        return idProducto;
     }
 
-    public void setIdproducto(int idproducto) {
-        this.idproducto = idproducto;
+    public void setIdProducto(long idProducto) {
+        this.idProducto = idProducto;
     }
 
     @Override
@@ -38,16 +38,16 @@ public class PedProdEntityPK implements Serializable {
 
         PedProdEntityPK that = (PedProdEntityPK) o;
 
-        if (idpedido != that.idpedido) return false;
-        if (idproducto != that.idproducto) return false;
+        if (idPedido != that.idPedido) return false;
+        if (idProducto != that.idProducto) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = idpedido;
-        result = 31 * result + idproducto;
+        int result = (int) (idPedido ^ (idPedido >>> 32));
+        result = 31 * result + (int) (idProducto ^ (idProducto >>> 32));
         return result;
     }
 }

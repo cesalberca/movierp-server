@@ -1,64 +1,25 @@
 package com.movierp.server.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Collection;
 
-/**
- * Created by Cesar
- */
 @Entity
-@Table(name = "CINES", schema = "movierp")
+@Table(name = "cines", schema = "movierp", catalog = "")
 public class CinesEntity {
+    private String cif;
+    private String direccion;
+    private String nombre;
+    private long idCine;
+    private Integer codigoPostal;
+    @JsonIgnore
+    private Collection<EmpleadosEntity> empleadossByIdCine;
+    @JsonIgnore
+    private Collection<SalasEntity> salassByIdCine;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "IDCINE")
-    private int idcine;
-
-    @Column(name = "NOMBRE")
-    public String nombre;
-
-    @Column(name = "CIF")
-    public String cif;
-
-    @Column(name = "DIRECCION")
-    public String direccion;
-
-    @Column(name = "C_POSTAL")
-    public Integer cPostal;
-
-    CinesEntity() {
-
-    }
-
-    public CinesEntity(String nombre, String cif, String direccion, Integer cPostal) {
-        this.nombre = nombre;
-        this.cif = cif;
-        this.direccion = direccion;
-        this.cPostal = cPostal;
-    }
-
-    //@Id
-    //@Column(name = "IDCINE")
-    public int getIdcine() {
-        return idcine;
-    }
-
-    public void setIdcine(int idcine) {
-        this.idcine = idcine;
-    }
-
-    //@Basic
-    //@Column(name = "NOMBRE")
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    //@Basic
-    //@Column(name = "CIF")
+    @Basic
+    @Column(name = "cif", nullable = true, length = 9)
     public String getCif() {
         return cif;
     }
@@ -67,8 +28,8 @@ public class CinesEntity {
         this.cif = cif;
     }
 
-    //@Basic
-    //@Column(name = "DIRECCION")
+    @Basic
+    @Column(name = "direccion", nullable = true, length = 100)
     public String getDireccion() {
         return direccion;
     }
@@ -77,14 +38,34 @@ public class CinesEntity {
         this.direccion = direccion;
     }
 
-    //@Basic
-    //@Column(name = "C_POSTAL")
-    public Integer getcPostal() {
-        return cPostal;
+    @Basic
+    @Column(name = "nombre", nullable = true, length = 50)
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setcPostal(Integer cPostal) {
-        this.cPostal = cPostal;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Id
+    @Column(name = "id_cine", nullable = false)
+    public long getIdCine() {
+        return idCine;
+    }
+
+    public void setIdCine(long idCine) {
+        this.idCine = idCine;
+    }
+
+    @Basic
+    @Column(name = "codigo_postal", nullable = true)
+    public Integer getCodigoPostal() {
+        return codigoPostal;
+    }
+
+    public void setCodigoPostal(Integer codigoPostal) {
+        this.codigoPostal = codigoPostal;
     }
 
     @Override
@@ -94,22 +75,40 @@ public class CinesEntity {
 
         CinesEntity that = (CinesEntity) o;
 
-        if (idcine != that.idcine) return false;
-        if (nombre != null ? !nombre.equals(that.nombre) : that.nombre != null) return false;
+        if (idCine != that.idCine) return false;
         if (cif != null ? !cif.equals(that.cif) : that.cif != null) return false;
         if (direccion != null ? !direccion.equals(that.direccion) : that.direccion != null) return false;
-        if (cPostal != null ? !cPostal.equals(that.cPostal) : that.cPostal != null) return false;
+        if (nombre != null ? !nombre.equals(that.nombre) : that.nombre != null) return false;
+        if (codigoPostal != null ? !codigoPostal.equals(that.codigoPostal) : that.codigoPostal != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = idcine;
-        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
-        result = 31 * result + (cif != null ? cif.hashCode() : 0);
+        int result = cif != null ? cif.hashCode() : 0;
         result = 31 * result + (direccion != null ? direccion.hashCode() : 0);
-        result = 31 * result + (cPostal != null ? cPostal.hashCode() : 0);
+        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
+        result = 31 * result + (int) (idCine ^ (idCine >>> 32));
+        result = 31 * result + (codigoPostal != null ? codigoPostal.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "cinesByIdCine")
+    public Collection<EmpleadosEntity> getEmpleadossByIdCine() {
+        return empleadossByIdCine;
+    }
+
+    public void setEmpleadossByIdCine(Collection<EmpleadosEntity> empleadossByIdCine) {
+        this.empleadossByIdCine = empleadossByIdCine;
+    }
+
+    @OneToMany(mappedBy = "cinesByIdCine")
+    public Collection<SalasEntity> getSalassByIdCine() {
+        return salassByIdCine;
+    }
+
+    public void setSalassByIdCine(Collection<SalasEntity> salassByIdCine) {
+        this.salassByIdCine = salassByIdCine;
     }
 }

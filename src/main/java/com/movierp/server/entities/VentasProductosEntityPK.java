@@ -8,27 +8,27 @@ import java.io.Serializable;
  * Created by Cesar
  */
 public class VentasProductosEntityPK implements Serializable {
-    private int idventa;
-    private int idproducto;
+    private long idVenta;
+    private long idProducto;
 
-    @Column(name = "IDVENTA")
+    @Column(name = "id_venta", nullable = false)
     @Id
-    public int getIdventa() {
-        return idventa;
+    public long getIdVenta() {
+        return idVenta;
     }
 
-    public void setIdventa(int idventa) {
-        this.idventa = idventa;
+    public void setIdVenta(long idVenta) {
+        this.idVenta = idVenta;
     }
 
-    @Column(name = "IDPRODUCTO")
+    @Column(name = "id_producto", nullable = false)
     @Id
-    public int getIdproducto() {
-        return idproducto;
+    public long getIdProducto() {
+        return idProducto;
     }
 
-    public void setIdproducto(int idproducto) {
-        this.idproducto = idproducto;
+    public void setIdProducto(long idProducto) {
+        this.idProducto = idProducto;
     }
 
     @Override
@@ -38,16 +38,16 @@ public class VentasProductosEntityPK implements Serializable {
 
         VentasProductosEntityPK that = (VentasProductosEntityPK) o;
 
-        if (idventa != that.idventa) return false;
-        if (idproducto != that.idproducto) return false;
+        if (idVenta != that.idVenta) return false;
+        if (idProducto != that.idProducto) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = idventa;
-        result = 31 * result + idproducto;
+        int result = (int) (idVenta ^ (idVenta >>> 32));
+        result = 31 * result + (int) (idProducto ^ (idProducto >>> 32));
         return result;
     }
 }
