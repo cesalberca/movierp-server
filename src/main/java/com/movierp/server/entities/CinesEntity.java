@@ -24,8 +24,11 @@ public class CinesEntity implements Serializable {
     @Column(name = "codigo_postal")
     private Integer codigoPostal;
 
-    @OneToMany(mappedBy = "id_cine")
+    @OneToMany(mappedBy = "cinesEntity")
     private List<SalasEntity> salas;
+
+    @OneToMany(mappedBy = "cinesEntity")
+    private List<EmpleadosEntity> empleados;
 
     public CinesEntity() {
     }
