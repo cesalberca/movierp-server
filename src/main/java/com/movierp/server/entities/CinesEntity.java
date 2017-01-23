@@ -2,6 +2,7 @@ package com.movierp.server.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "cines")
@@ -22,6 +23,9 @@ public class CinesEntity implements Serializable {
 
     @Column(name = "codigo_postal")
     private Integer codigoPostal;
+
+    @OneToMany(mappedBy = "id_cine")
+    private List<SalasEntity> salas;
 
     public CinesEntity() {
     }
