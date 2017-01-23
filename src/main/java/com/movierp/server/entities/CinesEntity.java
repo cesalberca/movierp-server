@@ -79,4 +79,20 @@ public class CinesEntity implements Serializable {
     public void setCodigoPostal(Integer codigoPostal) {
         this.codigoPostal = codigoPostal;
     }
+
+    public List<SalasEntity> getSalas() {
+        return salas;
+    }
+
+    public void setSalas(List<SalasEntity> salas) {
+        this.salas = salas;
+    }
+
+    public List<EmpleadosEntity> getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(List<EmpleadosEntity> empleados) {
+        this.empleados = empleados;
+    }
 }
