@@ -1,11 +1,12 @@
 package com.movierp.server.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "salas", schema = "movierp")
-public class SalasEntity {
+public class SalasEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_sala", nullable = false)
@@ -51,5 +52,13 @@ public class SalasEntity {
 
     public void setCinesEntity(CinesEntity cinesEntity) {
         this.cinesEntity = cinesEntity;
+    }
+
+    public List<SesionesEntity> getSesiones() {
+        return sesiones;
+    }
+
+    public void setSesiones(List<SesionesEntity> sesiones) {
+        this.sesiones = sesiones;
     }
 }
