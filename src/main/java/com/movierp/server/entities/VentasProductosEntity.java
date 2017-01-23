@@ -6,41 +6,32 @@ import javax.persistence.*;
  * Created by Cesar
  */
 @Entity
-@Table(name = "VENTAS_PRODUCTOS", schema = "movierp", catalog = "")
+@Table(name = "ventas_productos", schema = "movierp", catalog = "")
 @IdClass(VentasProductosEntityPK.class)
 public class VentasProductosEntity {
-    private int idventa;
-    private int idproducto;
-    private Integer cantidad;
+    private long idVenta;
+    private long idProducto;
+    private VentasEntity ventasByIdVenta;
+    private ProductosEntity productosByIdProducto;
 
     @Id
-    @Column(name = "IDVENTA")
-    public int getIdventa() {
-        return idventa;
+    @Column(name = "id_venta", nullable = false)
+    public long getIdVenta() {
+        return idVenta;
     }
 
-    public void setIdventa(int idventa) {
-        this.idventa = idventa;
+    public void setIdVenta(long idVenta) {
+        this.idVenta = idVenta;
     }
 
     @Id
-    @Column(name = "IDPRODUCTO")
-    public int getIdproducto() {
-        return idproducto;
+    @Column(name = "id_producto", nullable = false)
+    public long getIdProducto() {
+        return idProducto;
     }
 
-    public void setIdproducto(int idproducto) {
-        this.idproducto = idproducto;
-    }
-
-    @Basic
-    @Column(name = "CANTIDAD")
-    public Integer getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
+    public void setIdProducto(long idProducto) {
+        this.idProducto = idProducto;
     }
 
     @Override
@@ -50,18 +41,36 @@ public class VentasProductosEntity {
 
         VentasProductosEntity that = (VentasProductosEntity) o;
 
-        if (idventa != that.idventa) return false;
-        if (idproducto != that.idproducto) return false;
-        if (cantidad != null ? !cantidad.equals(that.cantidad) : that.cantidad != null) return false;
+        if (idVenta != that.idVenta) return false;
+        if (idProducto != that.idProducto) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = idventa;
-        result = 31 * result + idproducto;
-        result = 31 * result + (cantidad != null ? cantidad.hashCode() : 0);
+        int result = (int) (idVenta ^ (idVenta >>> 32));
+        result = 31 * result + (int) (idProducto ^ (idProducto >>> 32));
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "id_venta", referencedColumnName = "id_venta", nullable = false, insertable = false, updatable = false)
+    public VentasEntity getVentasByIdVenta() {
+        return ventasByIdVenta;
+    }
+
+    public void setVentasByIdVenta(VentasEntity ventasByIdVenta) {
+        this.ventasByIdVenta = ventasByIdVenta;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "id_producto", referencedColumnName = "id_producto", nullable = false, insertable = false, updatable = false)
+    public ProductosEntity getProductosByIdProducto() {
+        return productosByIdProducto;
+    }
+
+    public void setProductosByIdProducto(ProductosEntity productosByIdProducto) {
+        this.productosByIdProducto = productosByIdProducto;
     }
 }

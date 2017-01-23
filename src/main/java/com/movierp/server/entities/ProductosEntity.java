@@ -1,29 +1,32 @@
 package com.movierp.server.entities;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Created by Cesar
  */
 @Entity
-@Table(name = "PRODUCTOS", schema = "movierp", catalog = "")
+@Table(name = "productos", schema = "movierp", catalog = "")
 public class ProductosEntity {
-    private int idproducto;
+    private long idProducto;
     private String nombre;
     private Double precio;
+    private Collection<PedProdEntity> pedProdsByIdProducto;
+    private Collection<VentasProductosEntity> ventasProductossByIdProducto;
 
     @Id
-    @Column(name = "IDPRODUCTO")
-    public int getIdproducto() {
-        return idproducto;
+    @Column(name = "id_producto", nullable = false)
+    public long getIdProducto() {
+        return idProducto;
     }
 
-    public void setIdproducto(int idproducto) {
-        this.idproducto = idproducto;
+    public void setIdProducto(long idProducto) {
+        this.idProducto = idProducto;
     }
 
     @Basic
-    @Column(name = "NOMBRE")
+    @Column(name = "nombre", nullable = true, length = 100)
     public String getNombre() {
         return nombre;
     }
@@ -33,7 +36,7 @@ public class ProductosEntity {
     }
 
     @Basic
-    @Column(name = "PRECIO")
+    @Column(name = "precio", nullable = true, precision = 0)
     public Double getPrecio() {
         return precio;
     }
@@ -49,7 +52,7 @@ public class ProductosEntity {
 
         ProductosEntity that = (ProductosEntity) o;
 
-        if (idproducto != that.idproducto) return false;
+        if (idProducto != that.idProducto) return false;
         if (nombre != null ? !nombre.equals(that.nombre) : that.nombre != null) return false;
         if (precio != null ? !precio.equals(that.precio) : that.precio != null) return false;
 
@@ -58,9 +61,27 @@ public class ProductosEntity {
 
     @Override
     public int hashCode() {
-        int result = idproducto;
+        int result = (int) (idProducto ^ (idProducto >>> 32));
         result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
         result = 31 * result + (precio != null ? precio.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "productosByIdProducto")
+    public Collection<PedProdEntity> getPedProdsByIdProducto() {
+        return pedProdsByIdProducto;
+    }
+
+    public void setPedProdsByIdProducto(Collection<PedProdEntity> pedProdsByIdProducto) {
+        this.pedProdsByIdProducto = pedProdsByIdProducto;
+    }
+
+    @OneToMany(mappedBy = "productosByIdProducto")
+    public Collection<VentasProductosEntity> getVentasProductossByIdProducto() {
+        return ventasProductossByIdProducto;
+    }
+
+    public void setVentasProductossByIdProducto(Collection<VentasProductosEntity> ventasProductossByIdProducto) {
+        this.ventasProductossByIdProducto = ventasProductossByIdProducto;
     }
 }
