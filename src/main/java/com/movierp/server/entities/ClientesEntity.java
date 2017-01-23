@@ -1,23 +1,43 @@
 package com.movierp.server.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 
-/**
- * Created by Cesar
- */
 @Entity
-@Table(name = "clientes", schema = "movierp", catalog = "")
-public class ClientesEntity {
-    private String apellidos;
-    private String dni;
-    private String email;
-    private String nombre;
+@Table(name = "clientes", schema = "movierp")
+public class ClientesEntity implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_cliente", nullable = false)
     private long idCliente;
+
+    @Column(name = "apellidos")
+    private String apellidos;
+
+    @Column(name = "dni")
+    private String dni;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "nombre")
+    private String nombre;
+
+    @OneToMany(mappedBy = "clientesByIdCliente")
     private Collection<VentasEntity> ventassByIdCliente;
 
-    @Basic
-    @Column(name = "apellidos", nullable = true, length = 100)
+    public ClientesEntity() {
+    }
+
+    public ClientesEntity(String apellidos, String dni, String email, String nombre, Collection<VentasEntity> ventassByIdCliente) {
+        this.apellidos = apellidos;
+        this.dni = dni;
+        this.email = email;
+        this.nombre = nombre;
+        this.ventassByIdCliente = ventassByIdCliente;
+    }
+
     public String getApellidos() {
         return apellidos;
     }
@@ -26,8 +46,6 @@ public class ClientesEntity {
         this.apellidos = apellidos;
     }
 
-    @Basic
-    @Column(name = "dni", nullable = true, length = 9)
     public String getDni() {
         return dni;
     }
@@ -36,8 +54,6 @@ public class ClientesEntity {
         this.dni = dni;
     }
 
-    @Basic
-    @Column(name = "email", nullable = true, length = 200)
     public String getEmail() {
         return email;
     }
@@ -46,8 +62,6 @@ public class ClientesEntity {
         this.email = email;
     }
 
-    @Basic
-    @Column(name = "nombre", nullable = true, length = 100)
     public String getNombre() {
         return nombre;
     }
@@ -56,8 +70,6 @@ public class ClientesEntity {
         this.nombre = nombre;
     }
 
-    @Id
-    @Column(name = "id_cliente", nullable = false)
     public long getIdCliente() {
         return idCliente;
     }
@@ -66,33 +78,6 @@ public class ClientesEntity {
         this.idCliente = idCliente;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ClientesEntity that = (ClientesEntity) o;
-
-        if (idCliente != that.idCliente) return false;
-        if (apellidos != null ? !apellidos.equals(that.apellidos) : that.apellidos != null) return false;
-        if (dni != null ? !dni.equals(that.dni) : that.dni != null) return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        if (nombre != null ? !nombre.equals(that.nombre) : that.nombre != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = apellidos != null ? apellidos.hashCode() : 0;
-        result = 31 * result + (dni != null ? dni.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
-        result = 31 * result + (int) (idCliente ^ (idCliente >>> 32));
-        return result;
-    }
-
-    @OneToMany(mappedBy = "clientesByIdCliente")
     public Collection<VentasEntity> getVentassByIdCliente() {
         return ventassByIdCliente;
     }
