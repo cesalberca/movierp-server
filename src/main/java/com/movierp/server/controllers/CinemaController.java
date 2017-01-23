@@ -31,7 +31,7 @@ public class CinemaController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<CinesEntity> findOne(@PathVariable("id") int id) {
+    public ResponseEntity<CinesEntity> findOne(@PathVariable("id") Long id) {
         CinesEntity cinema = this.cinemaService.findOne(id);
         return new ResponseEntity<>(cinema, HttpStatus.FOUND);
     }
@@ -43,7 +43,7 @@ public class CinemaController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<CinesEntity> update(@PathVariable("id") int id, @RequestBody CinesEntity cinema) {
+    public ResponseEntity<CinesEntity> update(@PathVariable("id") Long id, @RequestBody CinesEntity cinema) {
         CinesEntity currentCinema = this.cinemaService.findOne(id);
 
         if (currentCinema == null) {
@@ -56,7 +56,7 @@ public class CinemaController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<CinesEntity> delete(@PathVariable("id") int id) {
+    public ResponseEntity<CinesEntity> delete(@PathVariable("id") Long id) {
         CinesEntity cinema = this.cinemaService.findOne(id);
 
         if (cinema == null) {
