@@ -5,8 +5,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "empleados", schema = "movierp")
 public class EmpleadosEntity {
-
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_empleado", nullable = false)
     private long idEmpleado;
 
@@ -23,8 +23,9 @@ public class EmpleadosEntity {
     @JoinColumn(name = "id_cine")
     private CinesEntity cinesEntity;
 
-    @OneToOne
-    private UsuariosEntity usuariosEntity;
+//    @OneToOne
+//    @JoinColumn(name = "id")
+//    private UsuariosEntity usuariosEntity;
 
     public long getIdEmpleado() {
         return idEmpleado;
@@ -64,13 +65,5 @@ public class EmpleadosEntity {
 
     public void setCinesEntity(CinesEntity cinesEntity) {
         this.cinesEntity = cinesEntity;
-    }
-
-    public UsuariosEntity getUsuariosEntity() {
-        return usuariosEntity;
-    }
-
-    public void setUsuariosEntity(UsuariosEntity usuariosEntity) {
-        this.usuariosEntity = usuariosEntity;
     }
 }
