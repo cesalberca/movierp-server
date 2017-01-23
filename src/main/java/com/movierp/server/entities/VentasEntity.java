@@ -69,7 +69,7 @@ public class VentasEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "ventasByIdVenta")
+    @OneToMany(mappedBy = "ventasEntity")
     public Collection<ReservasEntity> getReservassByIdVenta() {
         return reservassByIdVenta;
     }
