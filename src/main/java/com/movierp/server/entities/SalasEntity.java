@@ -1,6 +1,7 @@
 package com.movierp.server.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "salas", schema = "movierp")
@@ -16,6 +17,9 @@ public class SalasEntity {
     @ManyToOne
     @JoinColumn(name = "id_cine")
     private CinesEntity cinesEntity;
+
+    @OneToMany(mappedBy = "salasEntity")
+    private List<SesionesEntity> sesiones;
 
     public SalasEntity() {
     }
