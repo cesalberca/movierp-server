@@ -98,61 +98,92 @@ De este POJO que representa la tabla `cines` en nuestra base de datos se pueden 
 ## Relaciones
 
 Hasta ahora estamos modelando campos y atributos de un POJO, ¿pero qué hay de las relaciones? Las relaciones en cualquier base de datos relacional vienen dadas por tablas intermedias y el uso de claves foráneas y primarias. 
+
+Como Java es orientado a objetos podemos hacer uso de ello _incrustando_ dentro de un POJO otro POJO o una colección (Array) de POJOs. Para que esto funcione correctamente además se debe hacer uso de las siguientes anotaciones:
  
- Como Java es orientado a objetos podemos hacer uso de ello _incrustando_ dentro de un POJO otro POJO o una colección (Array) de POJOs. Para que esto funcione correctamente además se debe hacer uso de las siguientes anotaciones:
+* OneToOne
+* OneToMany
+* ManyToMany
+* ManyToOne
  
- * OneToOne
- * OneToMany
- * ManyToMany
- * ManyToOne
+Dentro de este tipo de anotaciones hay que distinguir si una relación es unidireccional o bidireccional. Para ello tenemos que __marcar__ quién es propietario de la relación. 
  
- Dentro de este tipo de anotaciones hay que distinguir si una relación es unidireccional o bidireccional. Para ello tenemos que __marcar__ quién es propietario de la relación. 
+Por ejemplo, si tenemos una relación 1:1 en nuestra base de datos entre la tabla `facura_pedido` y la tabla `pedidos` (Lo que quiere decir que un cliente sólamente tendrá un pedido y un pedido sólamente puede ser tenido por un cliente) se traduciría de la siguiente forma:
  
- Por ejemplo, si tenemos una relación 1:1 en nuestra base de datos entre la tabla `facura_pedido` y la tabla `pedidos` (Lo que quiere decir que un cliente sólamente tendrá un pedido y un pedido sólamente puede ser tenido por un cliente) se traduciría de la siguiente forma:
+```java
+@Entity
+@Table(name = "factura") 
+public class Factura implements Serializable  {
+    @Id 
+    @Column(name = "id_factura", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long idFactura;
+    
+    @Column(name = "id_pedido")
+    private long idPedido;
+    
+    @Column(name = "cantidad")
+    private double cantidad;
+    
+    @OneToOne
+    @JoinColumn(name = "id_pedido") 
+    private Order order;
+    
+    // Constructores, getters y setters
+}
+```
  
- ```java
- @Entity
- @Table(name = "factura") 
- public class Factura implements Serializable  {
-        
-        @Id 
-        @Column(name = "id_factura", nullable = false)
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        private long idFactura;
-        
-        @Column(name = "id_pedido")
-        private long idPedido;
-        
-        @Column(name = "cantidad", precision = 2)
-        private double cantidad;
-        
-        @OneToOne
-        @JoinColumn(name = "id_pedido") 
-        private Order order;
-        
-        // Constructores, getters y setters
- }
- ```
+La anotación `@OneToOne` indica que es una relación 1:1 y la anotación `@JoinColumn` indica  quién es el que va a mapear la relación, es decir quién es la clave foránea dentro de un pojo.
  
- La anotación `@OneToOne` indica que es una relación 1:1 y la anotación `@JoinColumn` indica  quién es el que va a mapear la relación, es decir quién es la clave foránea dentro de un pojo.
+```java
+@Entity
+@Table(name = "pedidos") 
+public class Order implements Serializable {
+    @Id 
+    @Column(name = "id_pedido", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long idPedido;
+    
+    @Column(name = "id_cliente")
+    private long idCliente;
+    
+    // Entidad que es propietaria de la relación
+    @OneToOne(mappedBy = "pedido")
+    private Factura factura;       
+    
+    // Constructores, getters y setters
+}
+```
  
- ```java
- @Entity
- @Table(name = "pedidos") 
- public class Order implements Serializable {
-        
-        @Id 
-        @Column(name = "id_pedido", nullable = false)
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        private long idPedido;
-        
-        @Column(name = "id_cliente")
-        private long idCliente;
-        
-        // Entidad que es propietaria de la relación
-        @OneToOne(mappedBy = "pedido")
-        private Factura factura;       
-        
-        // Constructores, getters y setters
- }
- ```
+Veamos ahora un ejemplo de `@ManyToOne`. Queremos modelar la relación que existe entre un departamento y un empleado. La relación 1:N, ya que un empleado sólamente puede trabajar en un departamente y en un departamento pueden trabajar muchos empleados.
+ 
+```java
+@Entity
+public class Empleado implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO) 	
+    private int idEmpleado;
+    private String nombre;
+    private double salario;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_departamento")
+    private Departamento departamento;
+    
+    // Constructores, getters y setters
+}
+```
+
+```java
+@Entity
+public class Departamento implements Serializable {
+    @Id 
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    private String nombre;
+ 
+    // Constructores, getters y setters
+}
+```
+
+Hay que destacar que esta relación es unidireccional, ya que un Empleado pertenece a un departamento, pero en este caso el departamento no tien un listado de todos los empleados.
