@@ -27,6 +27,9 @@ public class SesionesEntity implements Serializable {
     @JoinColumn(name = "id_sala")
     private SalasEntity salasEntity;
 
+    @OneToOne
+    @JoinColumn(name = "id_sesion")
+    private SesionesEntity sesionesEntity;
 
     public SesionesEntity() {
     }
