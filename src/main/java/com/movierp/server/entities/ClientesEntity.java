@@ -24,7 +24,7 @@ public class ClientesEntity implements Serializable {
     @Column(name = "nombre")
     private String nombre;
 
-    @OneToMany
+    @OneToMany(mappedBy = "clientesEntity")
     private Collection<VentasEntity> ventasEntities;
 
     public ClientesEntity() {
@@ -83,6 +83,10 @@ public class ClientesEntity implements Serializable {
     }
 
     public void setVentassByIdCliente(Collection<VentasEntity> ventasEntities) {
+        this.ventasEntities = ventasEntities;
+    }
+
+    public void setVentasEntities(Collection<VentasEntity> ventasEntities) {
         this.ventasEntities = ventasEntities;
     }
 }

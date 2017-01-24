@@ -1,5 +1,7 @@
 package com.movierp.server.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -24,9 +26,11 @@ public class CinesEntity implements Serializable {
     @Column(name = "codigo_postal")
     private Integer codigoPostal;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cinesEntity")
     private List<SalasEntity> salas;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cinesEntity")
     private List<EmpleadosEntity> empleados;
 
