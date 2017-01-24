@@ -1,7 +1,5 @@
 package com.movierp.server.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -26,22 +24,18 @@ public class CinesEntity implements Serializable {
     @Column(name = "codigo_postal")
     private Integer codigoPostal;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "cinesEntity")
-    private List<SalasEntity> salas;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "cinesEntity")
-    private List<EmpleadosEntity> empleados;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cinesEntity")
+    private List<EmpleadosEntity> empleadosEntities;
 
     public CinesEntity() {
     }
 
-    public CinesEntity(String cif, String direccion, String nombre, Integer codigoPostal) {
+    public CinesEntity(String cif, String direccion, String nombre, Integer codigoPostal, List<EmpleadosEntity> empleadosEntities) {
         this.cif = cif;
         this.direccion = direccion;
         this.nombre = nombre;
         this.codigoPostal = codigoPostal;
+        this.empleadosEntities = empleadosEntities;
     }
 
     public String getCif() {
@@ -84,19 +78,11 @@ public class CinesEntity implements Serializable {
         this.codigoPostal = codigoPostal;
     }
 
-    public List<SalasEntity> getSalas() {
-        return salas;
+    public List<EmpleadosEntity> getEmpleadosEntities() {
+        return empleadosEntities;
     }
 
-    public void setSalas(List<SalasEntity> salas) {
-        this.salas = salas;
-    }
-
-    public List<EmpleadosEntity> getEmpleados() {
-        return empleados;
-    }
-
-    public void setEmpleados(List<EmpleadosEntity> empleados) {
-        this.empleados = empleados;
+    public void setEmpleadosEntities(List<EmpleadosEntity> empleadosEntities) {
+        this.empleadosEntities = empleadosEntities;
     }
 }

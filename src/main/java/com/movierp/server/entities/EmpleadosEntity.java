@@ -2,6 +2,7 @@ package com.movierp.server.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Entity
 @Table(name = "empleados", schema = "movierp")
@@ -23,6 +24,16 @@ public class EmpleadosEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_cine")
     private CinesEntity cinesEntity;
+
+    public EmpleadosEntity() {
+    }
+
+    public EmpleadosEntity(String nombre, String apellidos, String dni, CinesEntity cinesEntity) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.dni = dni;
+        this.cinesEntity = cinesEntity;
+    }
 
     public long getIdEmpleado() {
         return idEmpleado;
@@ -54,13 +65,5 @@ public class EmpleadosEntity implements Serializable {
 
     public void setDni(String dni) {
         this.dni = dni;
-    }
-
-    public CinesEntity getCinesEntity() {
-        return cinesEntity;
-    }
-
-    public void setCinesEntity(CinesEntity cinesEntity) {
-        this.cinesEntity = cinesEntity;
     }
 }
