@@ -1,6 +1,5 @@
 package com.movierp.server.controllers;
 
-import com.movierp.server.entities.CinesEntity;
 import com.movierp.server.entities.EmpleadosEntity;
 import com.movierp.server.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;

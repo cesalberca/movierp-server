@@ -1,6 +1,7 @@
 package com.movierp.server.controllers;
 
 import com.movierp.server.entities.CinesEntity;
+import com.movierp.server.entities.EmpleadosEntity;
 import com.movierp.server.services.CinemaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
