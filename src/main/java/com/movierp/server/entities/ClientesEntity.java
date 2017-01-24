@@ -8,7 +8,7 @@ import java.util.Collection;
 @Table(name = "clientes", schema = "movierp")
 public class ClientesEntity implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     @Column(name = "id_cliente", nullable = false)
     private long idCliente;
 
@@ -24,18 +24,14 @@ public class ClientesEntity implements Serializable {
     @Column(name = "nombre")
     private String nombre;
 
-    @OneToMany(mappedBy = "clientesEntity")
-    private Collection<VentasEntity> ventasEntities;
-
     public ClientesEntity() {
     }
 
-    public ClientesEntity(String apellidos, String dni, String email, String nombre, Collection<VentasEntity> ventasEntities) {
+    public ClientesEntity(String apellidos, String dni, String email, String nombre) {
         this.apellidos = apellidos;
         this.dni = dni;
         this.email = email;
         this.nombre = nombre;
-        this.ventasEntities = ventasEntities;
     }
 
     public String getApellidos() {
@@ -72,21 +68,5 @@ public class ClientesEntity implements Serializable {
 
     public long getIdCliente() {
         return idCliente;
-    }
-
-    public void setIdCliente(long idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public Collection<VentasEntity> getVentasEntities() {
-        return ventasEntities;
-    }
-
-    public void setVentassByIdCliente(Collection<VentasEntity> ventasEntities) {
-        this.ventasEntities = ventasEntities;
-    }
-
-    public void setVentasEntities(Collection<VentasEntity> ventasEntities) {
-        this.ventasEntities = ventasEntities;
     }
 }
