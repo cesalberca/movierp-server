@@ -15,9 +15,6 @@ public class VentasEntity {
     @Column(name = "fecha")
     private Date fecha;
 
-    @JoinColumn(name = "id_reserva")
-    private ReservasEntity reservasEntity;
-
     @OneToOne
     @JoinColumn(name = "id_cliente")
     private ClientesEntity clientesEntity;

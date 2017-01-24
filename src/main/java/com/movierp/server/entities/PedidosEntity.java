@@ -1,21 +1,32 @@
 package com.movierp.server.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 
-/**
- * Created by Cesar
- */
 @Entity
-@Table(name = "pedidos", schema = "movierp", catalog = "")
-public class PedidosEntity {
+@Table(name = "pedidos", schema = "movierp")
+public class PedidosEntity implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_pedido", nullable = false)
     private long idPedido;
+
+    @Column(name = "id_proveedor")
     private Long idProveedor;
-    private Collection<PedProdEntity> pedProdsByIdPedido;
+
+    @ManyToOne
+    @JoinColumn(name = "id_proveedor", referencedColumnName = "id_proveedor", insertable = false, updatable = false)
     private ProveedoresEntity proveedoresByIdProveedor;
 
-    @Id
-    @Column(name = "id_pedido", nullable = false)
+    public PedidosEntity() {
+    }
+
+    public PedidosEntity(Long idProveedor, ProveedoresEntity proveedoresByIdProveedor) {
+        this.idProveedor = idProveedor;
+        this.proveedoresByIdProveedor = proveedoresByIdProveedor;
+    }
+
     public long getIdPedido() {
         return idPedido;
     }
@@ -24,8 +35,6 @@ public class PedidosEntity {
         this.idPedido = idPedido;
     }
 
-    @Basic
-    @Column(name = "id_proveedor", nullable = true)
     public Long getIdProveedor() {
         return idProveedor;
     }
@@ -34,37 +43,6 @@ public class PedidosEntity {
         this.idProveedor = idProveedor;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        PedidosEntity that = (PedidosEntity) o;
-
-        if (idPedido != that.idPedido) return false;
-        if (idProveedor != null ? !idProveedor.equals(that.idProveedor) : that.idProveedor != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = (int) (idPedido ^ (idPedido >>> 32));
-        result = 31 * result + (idProveedor != null ? idProveedor.hashCode() : 0);
-        return result;
-    }
-
-    @OneToMany(mappedBy = "pedidosByIdPedido")
-    public Collection<PedProdEntity> getPedProdsByIdPedido() {
-        return pedProdsByIdPedido;
-    }
-
-    public void setPedProdsByIdPedido(Collection<PedProdEntity> pedProdsByIdPedido) {
-        this.pedProdsByIdPedido = pedProdsByIdPedido;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "id_proveedor", referencedColumnName = "id_proveedor", insertable = false, updatable = false)
     public ProveedoresEntity getProveedoresByIdProveedor() {
         return proveedoresByIdProveedor;
     }

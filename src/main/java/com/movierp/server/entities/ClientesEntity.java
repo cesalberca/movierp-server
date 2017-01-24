@@ -24,18 +24,18 @@ public class ClientesEntity implements Serializable {
     @Column(name = "nombre")
     private String nombre;
 
-    @OneToMany(mappedBy = "clientesByIdCliente")
-    private Collection<VentasEntity> ventassByIdCliente;
+    @OneToMany
+    private Collection<VentasEntity> ventasEntities;
 
     public ClientesEntity() {
     }
 
-    public ClientesEntity(String apellidos, String dni, String email, String nombre, Collection<VentasEntity> ventassByIdCliente) {
+    public ClientesEntity(String apellidos, String dni, String email, String nombre, Collection<VentasEntity> ventasEntities) {
         this.apellidos = apellidos;
         this.dni = dni;
         this.email = email;
         this.nombre = nombre;
-        this.ventassByIdCliente = ventassByIdCliente;
+        this.ventasEntities = ventasEntities;
     }
 
     public String getApellidos() {
@@ -78,11 +78,11 @@ public class ClientesEntity implements Serializable {
         this.idCliente = idCliente;
     }
 
-    public Collection<VentasEntity> getVentassByIdCliente() {
-        return ventassByIdCliente;
+    public Collection<VentasEntity> getVentasEntities() {
+        return ventasEntities;
     }
 
-    public void setVentassByIdCliente(Collection<VentasEntity> ventassByIdCliente) {
-        this.ventassByIdCliente = ventassByIdCliente;
+    public void setVentassByIdCliente(Collection<VentasEntity> ventasEntities) {
+        this.ventasEntities = ventasEntities;
     }
 }
