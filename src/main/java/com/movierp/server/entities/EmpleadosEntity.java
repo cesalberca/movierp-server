@@ -1,10 +1,11 @@
 package com.movierp.server.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "empleados", schema = "movierp")
-public class EmpleadosEntity {
+public class EmpleadosEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_empleado", nullable = false)
@@ -22,10 +23,6 @@ public class EmpleadosEntity {
     @ManyToOne
     @JoinColumn(name = "id_cine")
     private CinesEntity cinesEntity;
-
-//    @OneToOne
-//    @JoinColumn(name = "id")
-//    private UsuariosEntity usuariosEntity;
 
     public long getIdEmpleado() {
         return idEmpleado;

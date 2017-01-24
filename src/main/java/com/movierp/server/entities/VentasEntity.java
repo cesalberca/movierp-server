@@ -15,7 +15,7 @@ public class VentasEntity {
     @Column(name = "fecha")
     private Date fecha;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_cliente")
     private ClientesEntity clientesEntity;
 
