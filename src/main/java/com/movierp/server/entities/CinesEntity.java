@@ -8,7 +8,7 @@ import java.util.List;
 @Table(name = "cines", schema = "movierp")
 public class CinesEntity implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     @Column(name = "id_cine", nullable = false)
     private long idCine;
 
@@ -24,18 +24,14 @@ public class CinesEntity implements Serializable {
     @Column(name = "codigo_postal")
     private Integer codigoPostal;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cinesEntity")
-    private List<EmpleadosEntity> empleadosEntities;
-
     public CinesEntity() {
     }
 
-    public CinesEntity(String cif, String direccion, String nombre, Integer codigoPostal, List<EmpleadosEntity> empleadosEntities) {
+    public CinesEntity(String cif, String direccion, String nombre, Integer codigoPostal) {
         this.cif = cif;
         this.direccion = direccion;
         this.nombre = nombre;
         this.codigoPostal = codigoPostal;
-        this.empleadosEntities = empleadosEntities;
     }
 
     public String getCif() {
@@ -76,13 +72,5 @@ public class CinesEntity implements Serializable {
 
     public void setCodigoPostal(Integer codigoPostal) {
         this.codigoPostal = codigoPostal;
-    }
-
-    public List<EmpleadosEntity> getEmpleadosEntities() {
-        return empleadosEntities;
-    }
-
-    public void setEmpleadosEntities(List<EmpleadosEntity> empleadosEntities) {
-        this.empleadosEntities = empleadosEntities;
     }
 }

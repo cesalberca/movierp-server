@@ -8,23 +8,21 @@ import java.util.Collection;
 @Table(name = "pedidos", schema = "movierp")
 public class PedidosEntity implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     @Column(name = "id_pedido", nullable = false)
     private long idPedido;
 
     @Column(name = "id_proveedor")
     private Long idProveedor;
 
-    @ManyToOne
-    @JoinColumn(name = "id_proveedor", referencedColumnName = "id_proveedor", insertable = false, updatable = false)
-    private ProveedoresEntity proveedoresByIdProveedor;
+//    @OneToOne
+//    private ProveedoresEntity proveedoresEntity;
 
     public PedidosEntity() {
     }
 
-    public PedidosEntity(Long idProveedor, ProveedoresEntity proveedoresByIdProveedor) {
+    public PedidosEntity(Long idProveedor) {
         this.idProveedor = idProveedor;
-        this.proveedoresByIdProveedor = proveedoresByIdProveedor;
     }
 
     public long getIdPedido() {
@@ -41,13 +39,5 @@ public class PedidosEntity implements Serializable {
 
     public void setIdProveedor(Long idProveedor) {
         this.idProveedor = idProveedor;
-    }
-
-    public ProveedoresEntity getProveedoresByIdProveedor() {
-        return proveedoresByIdProveedor;
-    }
-
-    public void setProveedoresByIdProveedor(ProveedoresEntity proveedoresByIdProveedor) {
-        this.proveedoresByIdProveedor = proveedoresByIdProveedor;
     }
 }

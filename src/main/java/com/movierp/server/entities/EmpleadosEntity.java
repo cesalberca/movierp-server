@@ -2,13 +2,12 @@ package com.movierp.server.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
 
 @Entity
 @Table(name = "empleados", schema = "movierp")
 public class EmpleadosEntity implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     @Column(name = "id_empleado", nullable = false)
     private long idEmpleado;
 
@@ -21,18 +20,18 @@ public class EmpleadosEntity implements Serializable {
     @Column(name = "dni")
     private String dni;
 
-    @ManyToOne
-    @JoinColumn(name = "id_cine")
-    private CinesEntity cinesEntity;
+    @Column(name = "id_cine")
+    private long idCine;
+
 
     public EmpleadosEntity() {
     }
 
-    public EmpleadosEntity(String nombre, String apellidos, String dni, CinesEntity cinesEntity) {
+    public EmpleadosEntity(String nombre, String apellidos, String dni, long idCine) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
-        this.cinesEntity = cinesEntity;
+        this.idCine = idCine;
     }
 
     public long getIdEmpleado() {
@@ -65,5 +64,13 @@ public class EmpleadosEntity implements Serializable {
 
     public void setDni(String dni) {
         this.dni = dni;
+    }
+
+    public long getIdCine() {
+        return idCine;
+    }
+
+    public void setIdCine(long idCine) {
+        this.idCine = idCine;
     }
 }
