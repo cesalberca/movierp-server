@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "cines")
+@Table(name = "cines", schema = "movierp")
 public class CinesEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
