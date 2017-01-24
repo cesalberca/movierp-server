@@ -86,7 +86,6 @@ De este POJO que representa la tabla `cines` en nuestra base de datos se pueden 
 
 * `@Entity`: Esta anotación quiere decir que este objeto representa una entidad de nuestra base de datos.
 * `@Table(name = "cines", schema = "movierp)`: Esta anotación sirve para mapear este POJO a una tabla en concreto. Si el nombre del POJO no coincide con el de la tabla de la base de datos se debe poner esta anotación. También mencionar que los POJOs por convención se ponen en singular mientras que las tablas de las bases de datos se ponen en plural.
-
     * `name = "cines"`: Nombre de la tabla que representa
     * `schema = "movierp"`: Nombre de la base de datos
 * `@Id`: Anotación para representar un campo que es `primary key`. Por convención todos los POJOs deberían tener un Id propio.
