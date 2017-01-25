@@ -7,8 +7,8 @@ import java.io.Serializable;
 
 @Entity
 @Data
-@Table(name = "clientes", schema = "movierp")
-public class ClientesEntity implements Serializable {
+@Table(name = "clientes")
+public class Client implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "id_cliente", nullable = false)

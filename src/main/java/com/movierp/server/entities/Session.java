@@ -9,8 +9,8 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "sesiones", schema = "movierp")
-public class SesionesEntity implements Serializable {
+@Table(name = "sesiones")
+public class Session implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "id_sesion", nullable = false)
@@ -19,18 +19,18 @@ public class SesionesEntity implements Serializable {
     @Column(name = "fecha_comienzo")
     private Date fechaComienzo;
 
-    @OneToMany(mappedBy = "sesionesEntity")
-    private List<ReservasEntity> reservasEntity;
+    @OneToMany(mappedBy = "session")
+    private List<Reservation> reservation;
 
     @ManyToOne
     @JoinColumn(name = "id_pelicula")
-    private PeliculasEntity peliculasEntity;
+    private Movie movie;
 
     @ManyToOne
     @JoinColumn(name = "id_sala")
-    private SalasEntity salasEntity;
+    private CinemaRoom cinemaRoom;
 
     @OneToOne
     @JoinColumn(name = "id_sesion")
-    private SesionesEntity sesionesEntity;
+    private Session session;
 }

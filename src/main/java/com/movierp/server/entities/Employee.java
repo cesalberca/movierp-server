@@ -4,16 +4,15 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
 
 @Entity
 @Data
-@Table(name = "proveedores", schema = "movierp")
-public class ProveedoresEntity implements Serializable {
+@Table(name = "empleados")
+public class Employee implements Serializable {
     @Id
     @GeneratedValue
-    @Column(name = "id_proveedor", nullable = false)
-    private long idProveedor;
+    @Column(name = "id_empleado", nullable = false)
+    private long idEmpleado;
 
     @Column(name = "nombre")
     private String nombre;
@@ -21,6 +20,9 @@ public class ProveedoresEntity implements Serializable {
     @Column(name = "apellidos")
     private String apellidos;
 
-    @Column(name = "cif")
-    private String cif;
+    @Column(name = "dni")
+    private String dni;
+
+    @Column(name = "id_cine")
+    private long idCine;
 }

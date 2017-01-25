@@ -1,6 +1,6 @@
 package com.movierp.server.entities;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,8 +8,8 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "cines", schema = "movierp")
-public class CinesEntity implements Serializable {
+@Table(name = "cines")
+public class Cinema implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "id_cine", nullable = false)
@@ -27,6 +27,6 @@ public class CinesEntity implements Serializable {
     @Column(name = "codigo_postal")
     private Integer codigoPostal;
 
-    @OneToMany(mappedBy = "cinesEntity")
-    private List<SalasEntity> salasEntity;
+    @OneToMany(mappedBy = "cinema")
+    private List<CinemaRoom> cinemaRoom;
 }

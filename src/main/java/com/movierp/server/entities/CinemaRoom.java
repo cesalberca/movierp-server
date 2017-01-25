@@ -8,8 +8,8 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "salas", schema = "movierp")
-public class SalasEntity implements Serializable {
+@Table(name = "salas")
+public class CinemaRoom implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "id_sala", nullable = false)
@@ -20,8 +20,8 @@ public class SalasEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_cine")
-    private CinesEntity cinesEntity;
+    private Cinema cinema;
 
-    @OneToMany(mappedBy = "salasEntity")
-    private List<SesionesEntity> sesiones;
+    @OneToMany(mappedBy = "cinemaRoom")
+    private List<Session> sesiones;
 }

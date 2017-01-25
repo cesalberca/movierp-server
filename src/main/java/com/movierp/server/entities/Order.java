@@ -8,8 +8,8 @@ import java.util.Collection;
 
 @Entity
 @Data
-@Table(name = "pedidos", schema = "movierp")
-public class PedidosEntity implements Serializable {
+@Table(name = "pedidos")
+public class Order implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "id_pedido", nullable = false)
@@ -19,5 +19,5 @@ public class PedidosEntity implements Serializable {
     private Long idProveedor;
 
 //    @OneToOne
-//    private ProveedoresEntity proveedoresEntity;
+//    private Provider proveedoresEntity;
 }

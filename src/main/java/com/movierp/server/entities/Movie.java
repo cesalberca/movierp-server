@@ -8,8 +8,8 @@ import java.util.Collection;
 
 @Entity
 @Data
-@Table(name = "peliculas", schema = "movierp")
-public class PeliculasEntity implements Serializable {
+@Table(name = "peliculas")
+public class Movie implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "id_pelicula", nullable = false)
