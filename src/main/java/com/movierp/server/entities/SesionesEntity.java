@@ -1,15 +1,18 @@
 package com.movierp.server.entities;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
 @Entity
+@Data
 @Table(name = "sesiones", schema = "movierp")
 public class SesionesEntity implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     @Column(name = "id_sesion", nullable = false)
     private long idSesion;
 
@@ -30,50 +33,4 @@ public class SesionesEntity implements Serializable {
     @OneToOne
     @JoinColumn(name = "id_sesion")
     private SesionesEntity sesionesEntity;
-
-    public SesionesEntity() {
-    }
-
-    public SesionesEntity(Date fechaComienzo, PeliculasEntity peliculasEntity, SalasEntity salasEntity, List<ReservasEntity> reservasEntity) {
-        this.fechaComienzo = fechaComienzo;
-        this.peliculasEntity = peliculasEntity;
-        this.salasEntity = salasEntity;
-        this.reservasEntity = reservasEntity;
-    }
-
-    public long getIdSesion() {
-        return idSesion;
-    }
-
-    public Date getFechaComienzo() {
-        return fechaComienzo;
-    }
-
-    public void setFechaComienzo(Date fechaComienzo) {
-        this.fechaComienzo = fechaComienzo;
-    }
-
-    public PeliculasEntity getPeliculasEntity() {
-        return peliculasEntity;
-    }
-
-    public void setPeliculasEntity(PeliculasEntity peliculasEntity) {
-        this.peliculasEntity = peliculasEntity;
-    }
-
-    public SalasEntity getSalasEntity() {
-        return salasEntity;
-    }
-
-    public void setSalasEntity(SalasEntity salasEntity) {
-        this.salasEntity = salasEntity;
-    }
-
-    public List<ReservasEntity> getReservasEntity() {
-        return reservasEntity;
-    }
-
-    public void setReservasEntity(List<ReservasEntity> reservasEntity) {
-        this.reservasEntity = reservasEntity;
-    }
 }

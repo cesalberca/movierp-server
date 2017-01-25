@@ -1,10 +1,13 @@
 package com.movierp.server.entities;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
+@Data
 @Table(name = "pedidos", schema = "movierp")
 public class PedidosEntity implements Serializable {
     @Id
@@ -17,27 +20,4 @@ public class PedidosEntity implements Serializable {
 
 //    @OneToOne
 //    private ProveedoresEntity proveedoresEntity;
-
-    public PedidosEntity() {
-    }
-
-    public PedidosEntity(Long idProveedor) {
-        this.idProveedor = idProveedor;
-    }
-
-    public long getIdPedido() {
-        return idPedido;
-    }
-
-    public void setIdPedido(long idPedido) {
-        this.idPedido = idPedido;
-    }
-
-    public Long getIdProveedor() {
-        return idProveedor;
-    }
-
-    public void setIdProveedor(Long idProveedor) {
-        this.idProveedor = idProveedor;
-    }
 }

@@ -1,13 +1,17 @@
 package com.movierp.server.entities;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
+@Data
 @Table(name = "peliculas", schema = "movierp")
 public class PeliculasEntity implements Serializable {
     @Id
+    @GeneratedValue
     @Column(name = "id_pelicula", nullable = false)
     private long idPelicula;
 
@@ -19,36 +23,4 @@ public class PeliculasEntity implements Serializable {
 
     @Column(name = "duracion")
     private Integer duracion;
-
-    public long getIdPelicula() {
-        return idPelicula;
-    }
-
-    public void setIdPelicula(long idPelicula) {
-        this.idPelicula = idPelicula;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getSinopsis() {
-        return sinopsis;
-    }
-
-    public void setSinopsis(String sinopsis) {
-        this.sinopsis = sinopsis;
-    }
-
-    public Integer getDuracion() {
-        return duracion;
-    }
-
-    public void setDuracion(Integer duracion) {
-        this.duracion = duracion;
-    }
 }
