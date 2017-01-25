@@ -14,11 +14,11 @@ public class Reservation implements Serializable {
     @Column(name = "id_reserva", nullable = false)
     private long idReserva;
 
-    @ManyToOne
-    @JoinColumn(name = "id_sesion")
-    private Session session;
-
-    @ManyToOne
-    @JoinColumn(name = "id_venta")
-    private Sales sales;
+//    @ManyToOne
+//    @JoinColumn(name = "id_sesion")
+//    private Session session;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "id_venta")
+//    private Sales sales;
 }

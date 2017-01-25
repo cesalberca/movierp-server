@@ -23,7 +23,7 @@ public class User implements Serializable {
     @Column(name = "contrasena")
     private String contrasena;
 
-    @OneToOne
-    @JoinColumn(name = "id_empleado")
-    private Employee employee;
+//    @OneToOne
+//    @JoinColumn(name = "id_empleado")
+//    private Employee employee;
 }

@@ -18,10 +18,10 @@ public class CinemaRoom implements Serializable {
     @Column(name = "numero_butacas")
     private Integer numeroButacas;
 
-    @ManyToOne
-    @JoinColumn(name = "id_cine")
-    private Cinema cinema;
-
-    @OneToMany(mappedBy = "cinemaRoom")
-    private List<Session> sesiones;
+//    @ManyToOne
+//    @JoinColumn(name = "id_cine")
+//    private Cinema cinema;
+//
+//    @OneToMany(mappedBy = "cinemaRoom")
+//    private List<Session> sesiones;
 }

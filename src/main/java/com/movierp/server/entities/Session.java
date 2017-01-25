@@ -19,18 +19,18 @@ public class Session implements Serializable {
     @Column(name = "fecha_comienzo")
     private Date fechaComienzo;
 
-    @OneToMany(mappedBy = "session")
-    private List<Reservation> reservation;
-
-    @ManyToOne
-    @JoinColumn(name = "id_pelicula")
-    private Movie movie;
-
-    @ManyToOne
-    @JoinColumn(name = "id_sala")
-    private CinemaRoom cinemaRoom;
-
-    @OneToOne
-    @JoinColumn(name = "id_sesion")
-    private Session session;
+//    @OneToMany(mappedBy = "session")
+//    private List<Reservation> reservation;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "id_pelicula")
+//    private Movie movie;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "id_sala")
+//    private CinemaRoom cinemaRoom;
+//
+//    @OneToOne
+//    @JoinColumn(name = "id_sesion")
+//    private Session session;
 }

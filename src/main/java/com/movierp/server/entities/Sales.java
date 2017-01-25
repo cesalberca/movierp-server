@@ -18,7 +18,7 @@ public class Sales implements Serializable {
     @Column(name = "fecha")
     private Date fecha;
 
-    @ManyToOne
-    @JoinColumn(name = "id_cliente")
-    private Client client;
+//    @ManyToOne
+//    @JoinColumn(name = "id_cliente")
+//    private Client client;
 }

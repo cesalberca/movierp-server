@@ -14,11 +14,14 @@ public class Provider implements Serializable {
     @Column(name = "id_proveedor", nullable = false)
     private long idProveedor;
 
-    @Column(name = "nombre")
-    private String nombre;
+    @Column(name = "nombre_comercial")
+    private String nombre_comerical;
 
-    @Column(name = "apellidos")
+    @Column(name = "nombre_fiscal")
     private String apellidos;
+
+    @Column(name = "direccion")
+    private String direccion;
 
     @Column(name = "cif")
     private String cif;

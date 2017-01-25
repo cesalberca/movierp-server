@@ -27,6 +27,6 @@ public class Cinema implements Serializable {
     @Column(name = "codigo_postal")
     private Integer codigoPostal;
 
-    @OneToMany(mappedBy = "cinema")
-    private List<CinemaRoom> cinemaRoom;
+//    @OneToMany(mappedBy = "cinema")
+//    private List<CinemaRoom> cinemaRoom;
 }
