@@ -6,5 +6,10 @@ import org.springframework.data.rest.core.config.Projection;
 
 @Projection(name = "inlineCinemaRoom", types = {CinesEntity.class})
 public interface InlineCinemaRoom {
-    String getSalasEntity();
+    String getCif();
+    String getDireccion();
+    String getNombre();
+    String getIdCine();
+    String getCodigoPostal();
+    SalasEntity getSalasEntity();
 }
