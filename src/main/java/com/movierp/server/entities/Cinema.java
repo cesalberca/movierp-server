@@ -1,6 +1,6 @@
 package com.movierp.server.entities;
 
-import lombok.*;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
