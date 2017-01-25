@@ -1,14 +1,17 @@
 package com.movierp.server.entities;
 
+import lombok.Data;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
-import java.util.Collection;
 
 @Entity
+@Data
 @Table(name = "ventas", schema = "movierp")
-public class VentasEntity {
+public class VentasEntity implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     @Column(name = "id_venta", nullable = false)
     private long idVenta;
 
@@ -18,23 +21,4 @@ public class VentasEntity {
     @ManyToOne
     @JoinColumn(name = "id_cliente")
     private ClientesEntity clientesEntity;
-
-    public VentasEntity() {
-    }
-
-    public long getIdVenta() {
-        return idVenta;
-    }
-
-    public void setIdVenta(long idVenta) {
-        this.idVenta = idVenta;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
 }
