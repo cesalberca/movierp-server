@@ -24,14 +24,18 @@ public class CinesEntity implements Serializable {
     @Column(name = "codigo_postal")
     private Integer codigoPostal;
 
+    @OneToMany(mappedBy = "cinesEntity")
+    private List<SalasEntity> salasEntity;
+
     public CinesEntity() {
     }
 
-    public CinesEntity(String cif, String direccion, String nombre, Integer codigoPostal) {
+    public CinesEntity(String cif, String direccion, String nombre, Integer codigoPostal, List<SalasEntity> salasEntity) {
         this.cif = cif;
         this.direccion = direccion;
         this.nombre = nombre;
         this.codigoPostal = codigoPostal;
+        this.salasEntity = salasEntity;
     }
 
     public String getCif() {
@@ -72,5 +76,13 @@ public class CinesEntity implements Serializable {
 
     public void setCodigoPostal(Integer codigoPostal) {
         this.codigoPostal = codigoPostal;
+    }
+
+    public List<SalasEntity> getSalasEntity() {
+        return salasEntity;
+    }
+
+    public void setSalasEntity(List<SalasEntity> salasEntity) {
+        this.salasEntity = salasEntity;
     }
 }
