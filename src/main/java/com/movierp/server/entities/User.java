@@ -1,11 +1,14 @@
 package com.movierp.server.entities;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "usuarios", schema = "movierp")
-public class UsuariosEntity implements Serializable {
+@Data
+@Table(name = "usuarios")
+public class User implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "id_usuario", nullable = false)
@@ -22,5 +25,5 @@ public class UsuariosEntity implements Serializable {
 
     @OneToOne
     @JoinColumn(name = "id_empleado")
-    private EmpleadosEntity empleadosEntity;
+    private Employee employee;
 }

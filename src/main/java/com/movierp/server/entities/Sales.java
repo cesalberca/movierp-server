@@ -8,8 +8,8 @@ import java.sql.Date;
 
 @Entity
 @Data
-@Table(name = "ventas", schema = "movierp")
-public class VentasEntity implements Serializable {
+@Table(name = "ventas")
+public class Sales implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "id_venta", nullable = false)
@@ -20,5 +20,5 @@ public class VentasEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_cliente")
-    private ClientesEntity clientesEntity;
+    private Client client;
 }

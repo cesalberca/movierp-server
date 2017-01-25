@@ -7,8 +7,8 @@ import java.io.Serializable;
 
 @Entity
 @Data
-@Table(name = "reservas", schema = "movierp")
-public class ReservasEntity implements Serializable {
+@Table(name = "reservas")
+public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_reserva", nullable = false)
@@ -16,9 +16,9 @@ public class ReservasEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_sesion")
-    private SesionesEntity sesionesEntity;
+    private Session session;
 
     @ManyToOne
     @JoinColumn(name = "id_venta")
-    private VentasEntity ventasEntity;
+    private Sales sales;
 }
