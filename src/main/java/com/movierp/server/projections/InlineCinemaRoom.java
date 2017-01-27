@@ -11,5 +11,5 @@ public interface InlineCinemaRoom {
     String getNombre();
     String getIdCine();
     String getCodigoPostal();
-    CinemaRoom getCinemaRoom();
+//    CinemaRoom getCinemaRoom();
 }
