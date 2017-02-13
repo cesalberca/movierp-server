@@ -19,6 +19,12 @@ public class Session implements Serializable {
     @Column(name = "fecha_comienzo")
     private Date fechaComienzo;
 
+    @Column(name = "id_sala")
+    private long idSala;
+
+    @Column(name = "id_pelicula")
+    private long idPelicula;
+
 //    @OneToMany(mappedBy = "session")
 //    private List<Reservation> reservation;
 //

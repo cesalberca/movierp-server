@@ -18,6 +18,9 @@ public class CinemaRoom implements Serializable {
     @Column(name = "numero_butacas")
     private Integer numeroButacas;
 
+    @Column(name = "id_cine")
+    private long idCine;
+
 //    @ManyToOne
 //    @JoinColumn(name = "id_cine")
 //    private Cinema cinema;
