@@ -1,7 +1,7 @@
 package com.movierp.server.services;
 
 import com.movierp.server.entities.Cinema;
-import com.movierp.server.entities.CinemaRoom;
+import com.movierp.server.entities.Movie;
 import com.movierp.server.entities.Session;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -19,17 +19,21 @@ public interface CinemaService extends CrudRepository<Cinema, Long> {
     @Query("select s from Session s where s.idSala in (select idSala from CinemaRoom where idCine = :idCine)")
     List<Session> findSessionsByCinemaId(@Param("idCine") Long idCine);
 
-//    @Query("select c from Cinema c where c.idCine = 44")
-//    List<Cinema> findCinemas(@Param("idCine") long idCine);
+    /**
+     * Returns all the movies that a cinema with a given id is showing
+     * @param idCine the id of the cinema to check
+     * @return a list of movies available in the cinema
+     */
+    @Query("select m from Movie m where m.idPelicula in (select idPelicula from Session where idSala in (select idSala from CinemaRoom where idCine = :idCine))")
+    List<Movie> findMoviesByCinemaId(@Param("idCine") Long idCine);
 
-//    @Query("SELECT c FROM Cinema c WHERE c.idCine = :idCine")
-//    Cinema findCinema(@Param("idCine") Long idCine);
+    /**
+     * Returns all the sessions of a given movie id in a given cinema id
+     * @param idCine the id of the cinema to check
+     * @param idPelicula the id of the movie to check
+     * @return a list of available sessions of a given movie in a given cinema
+     */
+    @Query("select s from Session s where s.idSala in (select idSala from CinemaRoom where idCine = :idCine) and s.idPelicula = :idPelicula")
+    List<Movie> findSessionsByMovieIdAndCinemaId(@Param("idCine") Long idCine, @Param("idPelicula") Long idPelicula);
 
-//    @Query("select c from CinemaRoom c")
-//    List<CinemaRoom> findCinemaRoom();
-
-    // Comentario para César:
-    // Lo que estaría bien es que :
-    // 1 - Le paso la id del Cine
-    // 2 - Devuelve todas las sesiones del Cine con esa id
 }
