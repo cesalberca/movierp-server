@@ -34,6 +34,6 @@ public interface CinemaService extends CrudRepository<Cinema, Long> {
      * @return a list of available sessions of a given movie in a given cinema
      */
     @Query("select s from Session s where s.idSala in (select idSala from CinemaRoom where idCine = :idCine) and s.idPelicula = :idPelicula")
-    List<Movie> findSessionsByCinemaIdAndByMovieId(@Param("idCine") Long idCine, @Param("idPelicula") Long idPelicula);
+    List<Session> findSessionsByCinemaIdAndByMovieId(@Param("idCine") Long idCine, @Param("idPelicula") Long idPelicula);
 
 }
