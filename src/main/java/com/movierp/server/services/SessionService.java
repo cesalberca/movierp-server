@@ -20,5 +20,5 @@ public interface SessionService  extends CrudRepository<Session, Long>{
     @Transactional
     @Modifying(clearAutomatically = true)
     @Query("update Session s set s.butacasLibres = s.butacasLibres - :ticketAmount where s.idSesion = :idSesion and s.butacasLibres - :ticketAmount >= 0")
-    void buyTicketsForSessionById(@Param("idSesion") long idSesion, @Param("ticketAmount") int ticketAmount);
+    int buyTicketsForSessionById(@Param("idSesion") long idSesion, @Param("ticketAmount") int ticketAmount);
 }
