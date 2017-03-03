@@ -6,9 +6,6 @@
       <item index="1" class="java.lang.String" itemvalue="org.springframework.web.bind.annotation.RestController" />
     </list>
   </component>
-  <component name="FrameworkDetectionExcludesConfiguration">
-    <file type="web" url="file://$PROJECT_DIR$" />
-  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
